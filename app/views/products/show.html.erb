@@ -1,0 +1,33 @@
+<h1><a href= Soda or Pop...?>
+  </h1>
+<div>
+  <h1>Product Info</h1>
+  <h2>Name: <%= @product.name %> </h2>
+  <h3>Price: <%= number_to_currency(@product.price) %> </h3>
+    <p>Tax: <%= number_to_currency(@product.tax) %></p>
+    <p>Total: <%= number_to_currency(@product.total) %> </p>
+  <img Image: <%= @product.image %>>
+  <h5>Description: <%= @product.description%></h5>
+</div>
+
+<a href= "/products/<%= @product.id %>/edit" class="btn btn-warning">Edit Product</a>
+
+<%= form_tag "/products/#{ @product.id }", method: :delete do %>
+  <input type ="submit" value="Delete Product" class= "btn btn-danger">
+<% end %>
+
+<%= form_tag '/cart', method: :post do %>
+<div>
+Quantity:<input type="text" name="quantity">
+</div>
+<input type ="submit" value="Add to cart!!" class= "btn btn-primary">
+</div>
+<div>
+<input type ="hidden" value="product_id" value="<%= @product.id %>">
+</div>
+<% end %>
+
+
+
+
+

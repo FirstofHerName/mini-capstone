@@ -1,0 +1,10 @@
+
+
+<% @carted_products.each do |cart| %>
+  <h2><%= cart.status %></h2>
+  <h2><%= cart.quantity %></h2>
+<%end%>
+
+<%= form_tag '/orders', method: :post do %>
+  <div><input type="submit" value="Buy Now" ></div>
+  <%end%>

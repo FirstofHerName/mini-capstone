@@ -1,0 +1,19 @@
+<a href= Soda or Pop...?>
+  
+  <% @products.each_slice(3) do |product_slice| %>
+
+<div class="row">
+  <% product_slice.each do |product| %>
+    <div class= "col-md-4">
+      <div class="well">
+        <h1>Name: <a href='/products/<%= product.id %>'><%= product.name %></a> </h1>
+        <h2>Price: <%= number_to_currency(product.price) %> </h2>
+          <h5> <%= product.sale_message %></h5>
+
+        <img src="<%= product.image %>" alt="">
+        <h3>Description: <%= product.description %> </h3>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% end %>
