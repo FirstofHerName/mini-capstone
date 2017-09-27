@@ -1,10 +1,10 @@
-
+<h1>Checkout Page</h1>
 
 <% @carted_products.each do |cart| %>
-  <h2><%= cart.status %></h2>
-  <h2><%= cart.quantity %></h2>
+  <h2><%= carted_product.product.name %> - Quantity: <%= carted_product.quantity %></h2>
+  - <a href="carted_products/<%= carted_product.id %>">remove</a>
+  <%= link_to "remove", "/carted_products/#{carted_product.id}, method: :delete" %>
 <%end%>
 
-<%= form_tag '/orders', method: :post do %>
-  <div><input type="submit" value="Buy Now" ></div>
-  <%end%>
+<%= link_to "Buy Now", "/orders", method: post: class: "btn btn-primary" %>
+

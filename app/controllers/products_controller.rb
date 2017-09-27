@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
-   
-  def index
+   before_action :authenticate_admin!, except: [:index, :show, :random] 
+
+    def index
+
+    @cart_count= current_user.current_cart.cart_count
+    
     @products = Product.all
 
     sort_attribute = params[:sort]
@@ -25,6 +29,12 @@ class ProductsController < ApplicationController
   end
 
   def new
+    redirect_to '/' unless current_user && current_user.admin
+    @suppliers =Supplier.all
+
+    end
+
+
 
   end
 

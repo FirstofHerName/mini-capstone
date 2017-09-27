@@ -28,6 +28,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            
             <li><a href="/?sort=name">Name</a></li>
             <li><a href="/?sort=price&sort_order=desc">Price: Highest to Lowest</a></li>
             <li><a href="/?sort=price">Price: Lowest to Highest</a></li>
@@ -44,6 +45,7 @@
             <% else %>
             <li><a href="/signup">Sign Up</a></li>
             <li><a href="/login">Login</a></li>
+            <li><a href= "/cart">Cart ( <%= cart_count %></li>
             <% end %>
           </ul>
         </li>
