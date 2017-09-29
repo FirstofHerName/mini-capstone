@@ -16,6 +16,7 @@
   <input type ="submit" value="Delete Product" class= "btn btn-danger">
 <% end %>
 
+<% if current_user %>
 <%= form_tag '/cart', method: :post do %>
 <div>
 Quantity:<input type="text" name="quantity">
@@ -25,6 +26,8 @@ Quantity:<input type="text" name="quantity">
 <div>
 <input type ="hidden" value="product_id" value="<%= @product.id %>">
 </div>
+<% else %>
+<p><a href= "Please login to purchase items"></p>
 <% end %>
 
 

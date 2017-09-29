@@ -1,4 +1,5 @@
 class CartedProductsController < ApplicationController
+  before_action :authentication_user!, only: [:create, :index, :destroy]
 
 
   def index

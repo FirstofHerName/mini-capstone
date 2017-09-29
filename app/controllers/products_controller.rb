@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-   before_action :authenticate_admin!, except: [:index, :show, :random] 
+   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy] 
 
     def index
 
@@ -29,25 +29,26 @@ class ProductsController < ApplicationController
   end
 
   def new
-    redirect_to '/' unless current_user && current_user.admin
-    @suppliers =Supplier.all
+    @suppliers = Supplier.all
+    @product = Product.new
 
     end
-
-
-
   end
 
   def create
-    product = Product.new(
+    @product = Product.new(
                         name: params[:name],
                         price: params[:price],
                         image: params[:image],
                         description: params[:description]
                         )
-    product.save
+    if @product.save
     flash[:sucess] = "Product sucessfully added"
-    redirect_to "/products/#{ product.id }"
+    redirect_to "/products/#{@product.id}"
+  else
+    @suppliers = Supplier.all
+    @errors = @product.errors.full_messages
+    render "new.html.erb"
   end
 
   def show
@@ -59,7 +60,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
+    @product = Product.find(params[:id])
     product.assign_attributes(
                         name:params[:name],
                         price: params[:price],
@@ -67,9 +68,13 @@ class ProductsController < ApplicationController
                         description: params[:description]
                         )
 
-    product.save
+    if @product.save
     flash[:sucess] = "Product sucessfully updated"
     redirect_to "/products/#{ product.id}"
+  else
+    @suppliers = Supplier.all
+    @errors = @product.errors.full_messages
+    render "new.html.erb"
   end
 
   def destroy
