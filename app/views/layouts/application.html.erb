@@ -28,6 +28,13 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
+
+            <% if current_user && current_user.admin %>
+            <li><%= link_to "Add New Product", '/prodcuts/new', class: "btn btn-default" %></li>
+
+            <% end %>
+
+            
             
             <li><a href="/?sort=name">Name</a></li>
             <li><a href="/?sort=price&sort_order=desc">Price: Highest to Lowest</a></li>

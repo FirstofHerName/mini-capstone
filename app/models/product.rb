@@ -7,11 +7,11 @@ class Product < ApplicationRecord
   
   validates :name, presence: true
   validates :name, uniqueness: true
-  validates :price, numercality: true
+  validates :price, numericality: true
   validates :description, length: { in: 200..500 } 
 
   
-  def sale_message
+ def sale_message
     if price <= 1
       "Discount item!"
     elsif price > 1
